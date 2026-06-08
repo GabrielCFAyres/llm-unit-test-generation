@@ -1,0 +1,108 @@
+Você é um QA Automation Engineer especialista em testes unitários.
+
+Sua tarefa é gerar testes unitários em pytest para o código-alvo fornecido.
+
+## Objetivo
+
+Criar uma suíte de testes unitários que valide o comportamento observável das funções do módulo, considerando cenários normais, cenários de borda, entradas inválidas e exceções esperadas.
+
+## Regras obrigatórias
+
+- Use pytest.
+- Gere apenas código de teste em Python.
+- Não altere o código da aplicação.
+- Não crie funções, classes, métodos ou parâmetros que não existam no código-alvo.
+- Não crie dependências externas inexistentes.
+- Não teste detalhes internos de implementação; teste apenas comportamento observável.
+- Use asserts relevantes para validar os resultados esperados.
+- Inclua testes para entradas válidas.
+- Inclua testes para entradas inválidas.
+- Inclua testes para valores-limite, quando aplicável.
+- Inclua testes para exceções esperadas, quando aplicável.
+- Considere as docstrings do código-alvo como a especificação das regras de negócio.
+- Retorne apenas o código do arquivo de teste, sem explicações adicionais.
+
+## Código-alvo
+
+from typing import List, Dict
+
+
+ACCEPTED_PAYMENT_METHODS = {"credit_card", "debit_card", "pix", "bank_slip"}
+
+
+def validate_order(
+    items: List[Dict],
+    address: Dict,
+    payment_method: str,
+) -> bool:
+    """
+    Valida se um pedido possui os dados mínimos necessários para ser processado.
+
+    Regras:
+    - O pedido deve possuir pelo menos um item.
+    - Cada item deve possuir nome, quantidade, preço unitário e estoque disponível.
+    - A quantidade de cada item deve ser maior que zero.
+    - O preço unitário de cada item deve ser maior que zero.
+    - A quantidade solicitada não pode ser maior que o estoque disponível.
+    - O endereço deve conter rua, número, cidade, estado e CEP.
+    - A forma de pagamento deve estar entre as formas aceitas.
+
+    Retorna:
+    - True se o pedido for válido.
+    - False se alguma regra de validação não for atendida.
+
+    Exceções:
+    - TypeError se items não for lista.
+    - TypeError se address não for dicionário.
+    """
+
+    if not isinstance(items, list):
+        raise TypeError("items must be a list")
+
+    if not isinstance(address, dict):
+        raise TypeError("address must be a dictionary")
+
+    if not items:
+        return False
+
+    required_item_fields = {"name", "quantity", "unit_price", "stock"}
+
+    for item in items:
+        if not isinstance(item, dict):
+            return False
+
+        if not required_item_fields.issubset(item.keys()):
+            return False
+
+        if not item["name"]:
+            return False
+
+        if item["quantity"] <= 0:
+            return False
+
+        if item["unit_price"] <= 0:
+            return False
+
+        if item["stock"] < 0:
+            return False
+
+        if item["quantity"] > item["stock"]:
+            return False
+
+    required_address_fields = {"street", "number", "city", "state", "zip_code"}
+
+    if not required_address_fields.issubset(address.keys()):
+        return False
+
+    for field in required_address_fields:
+        if address[field] in (None, ""):
+            return False
+
+    if payment_method not in ACCEPTED_PAYMENT_METHODS:
+        return False
+
+    return True
+
+## Nome esperado do arquivo de teste
+
+test_orders.py
