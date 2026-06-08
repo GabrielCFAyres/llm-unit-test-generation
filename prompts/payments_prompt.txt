@@ -1,0 +1,136 @@
+Você é um QA Automation Engineer especialista em testes unitários.
+
+Sua tarefa é gerar testes unitários em pytest para o código-alvo fornecido.
+
+## Objetivo
+
+Criar uma suíte de testes unitários que valide o comportamento observável das funções do módulo, considerando cenários normais, cenários de borda, entradas inválidas e exceções esperadas.
+
+## Regras obrigatórias
+
+- Use pytest.
+- Gere apenas código de teste em Python.
+- Não altere o código da aplicação.
+- Não crie funções, classes, métodos ou parâmetros que não existam no código-alvo.
+- Não crie dependências externas inexistentes.
+- Não teste detalhes internos de implementação; teste apenas comportamento observável.
+- Use asserts relevantes para validar os resultados esperados.
+- Inclua testes para entradas válidas.
+- Inclua testes para entradas inválidas.
+- Inclua testes para valores-limite, quando aplicável.
+- Inclua testes para exceções esperadas, quando aplicável.
+- Considere as docstrings do código-alvo como a especificação das regras de negócio.
+- Retorne apenas o código do arquivo de teste, sem explicações adicionais.
+
+## Código-alvo
+
+from typing import Literal
+
+
+PaymentMethod = Literal["credit_card", "debit_card", "pix", "bank_slip"]
+
+
+def validate_payment(
+    method: str,
+    order_value: float,
+    installments: int = 1,
+) -> bool:
+    """
+    Valida se uma forma de pagamento pode ser utilizada para um pedido.
+
+    Regras:
+    - O valor do pedido deve ser maior que zero.
+    - Métodos aceitos: credit_card, debit_card, pix, bank_slip.
+    - Pagamento via pix, debit_card e bank_slip deve ter apenas 1 parcela.
+    - Pagamento via credit_card permite de 1 até 12 parcelas.
+    - Para parcelamento no cartão de crédito acima de 6 parcelas,
+      o valor do pedido deve ser de pelo menos 300.
+    - Para bank_slip, o valor mínimo do pedido deve ser 20.
+    - Para credit_card, o valor mínimo do pedido deve ser 10.
+
+    Retorna:
+    - True se o pagamento for válido.
+    - False se alguma regra não for atendida.
+
+    Exceções:
+    - TypeError se order_value não for número.
+    - TypeError se installments não for inteiro.
+    """
+
+    accepted_methods = {"credit_card", "debit_card", "pix", "bank_slip"}
+
+    if not isinstance(order_value, (int, float)):
+        raise TypeError("order_value must be numeric")
+
+    if not isinstance(installments, int):
+        raise TypeError("installments must be an integer")
+
+    if order_value <= 0:
+        return False
+
+    if method not in accepted_methods:
+        return False
+
+    if installments <= 0:
+        return False
+
+    if method in {"pix", "debit_card", "bank_slip"} and installments != 1:
+        return False
+
+    if method == "bank_slip" and order_value < 20:
+        return False
+
+    if method == "credit_card":
+        if order_value < 10:
+            return False
+
+        if installments > 12:
+            return False
+
+        if installments > 6 and order_value < 300:
+            return False
+
+    return True
+
+
+def calculate_payment_fee(method: str, order_value: float, installments: int = 1) -> float:
+    """
+    Calcula a taxa de pagamento aplicada ao pedido.
+
+    Regras:
+    - pix não possui taxa.
+    - debit_card possui taxa de 1%.
+    - bank_slip possui taxa fixa de 2.50.
+    - credit_card possui taxa de 2% para até 6 parcelas.
+    - credit_card possui taxa de 4% para 7 a 12 parcelas.
+
+    Retorna:
+    - Valor da taxa de pagamento.
+
+    Exceções:
+    - ValueError se o pagamento for inválido.
+    """
+
+    if not validate_payment(method, order_value, installments):
+        raise ValueError("invalid payment data")
+
+    if method == "pix":
+        return 0.0
+
+    if method == "debit_card":
+        return round(order_value * 0.01, 2)
+
+    if method == "bank_slip":
+        return 2.50
+
+    if method == "credit_card":
+        if installments <= 6:
+            return round(order_value * 0.02, 2)
+
+        return round(order_value * 0.04, 2)
+
+    raise ValueError("invalid payment method")
+
+## Nome esperado do arquivo de teste
+
+test_payments.py
