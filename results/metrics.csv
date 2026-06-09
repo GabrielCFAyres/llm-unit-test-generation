@@ -1,0 +1,5 @@
+modelo,modulo,testes_gerados,testes_executaveis,testes_aprovados,cobertura_linhas,linhas_nao_cobertas,alucinacoes,esforco_correcao_humana
+claude,orders,22,22,22,100%,-,0,nenhum
+claude,payments,30,30,30,98%,L106,0,nenhum
+claude,customer_risk,30,30,30,100%,-,0,nenhum
+claude,TOTAL,82,82,82,99%,payments:L106,0,nenhum
