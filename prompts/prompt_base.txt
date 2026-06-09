@@ -6,6 +6,32 @@ Sua tarefa é gerar testes unitários em pytest para o código-alvo fornecido.
 
 Criar uma suíte de testes unitários que valide o comportamento observável das funções do módulo, considerando cenários normais, cenários de borda, entradas inválidas e exceções esperadas.
 
+## Estrutura do projeto
+
+Considere a seguinte estrutura de pastas do projeto:
+
+llm-unit-test-generation/
+├── src/
+│   ├── __init__.py
+│   ├── orders.py
+│   ├── payments.py
+│   └── customer_risk.py
+└── tests_generated/
+    └── [modelo]/
+        └── [arquivo_de_teste.py]
+
+Os testes serão executados a partir da raiz do projeto.
+
+Portanto, use imports no seguinte formato:
+
+from src.nome_do_modulo import nome_da_funcao
+
+Exemplos:
+
+from src.orders import validate_order
+from src.payments import validate_payment, calculate_payment_fee
+from src.customer_risk import classify_customer_risk, can_customer_place_order
+
 ## Regras obrigatórias
 
 - Use pytest.
