@@ -7,3 +7,7 @@ gemini,orders,41,41,41,100%,-,nenhuma,nenhum
 gemini,payments,36,36,36,98%,L106,nenhuma,nenhum
 gemini,customer_risk,53,53,53,100%,-,nenhuma,nenhum
 gemini,TOTAL,120,120,120,99%,payments:L106,nenhuma,nenhum
+chatgpt,orders,47,47,47,100%,-,0,médio (10-15min) para correção de identação
+chatgpt,payments,43,43,43,98%,L106,0,nenhum
+chatgpt,customer_risk,54,54,54,100%,-,0,nenhum
+chatgpt,TOTAL,144,144,144,99%,payments:L106,0, médio em orders.py (10-15min)
