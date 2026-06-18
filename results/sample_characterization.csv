@@ -1,4 +1,0 @@
-modulo,funcoes,linhas_codigo,complexidade_ciclomatica_media,maior_complexidade,observacoes
-orders,validate_order,,,, 
-payments,"validate_payment; calculate_payment_fee",,,,
-customer_risk,"classify_customer_risk; can_customer_place_order",,,,
