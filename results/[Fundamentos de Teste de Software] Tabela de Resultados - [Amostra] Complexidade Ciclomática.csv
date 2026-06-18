@@ -1,0 +1,7 @@
+Módulo,Função Avaliada,Complexidade Ciclomática,Classificação,Interpretação
+orders,validate_order,16,C,"Função com maior complexidade da amostra, pois concentra validações de itens, endereço, estoque e forma de pagamento."
+payments,validate_payment,15,C,"Função com múltiplas regras condicionais para métodos de pagamento, parcelamento e valores mínimos."
+payments,calculate_payment_fee,7,B,"Função de complexidade moderada, com ramificações para diferentes métodos de pagamento."
+customer_risk,classify_customer_risk,14,C,"Função com classificação por faixas de score, atraso e valor em aberto."
+customer_risk,can_customer_place_order,6,B,"Função de complexidade moderada, baseada no risco do cliente e no valor do pedido."
+Total/Média,5 funções,"11,6",C,"A amostra possui complexidade média considerável, com múltiplos caminhos condicionais."

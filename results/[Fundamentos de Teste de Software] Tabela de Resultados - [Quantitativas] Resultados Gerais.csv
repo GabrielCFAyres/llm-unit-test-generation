@@ -1,0 +1,13 @@
+Modelo,Módulo,Testes Gerados,Testes Executaveis,Testes Aprovados,Cobertura de Linhas,Linhas Não Cobertas,Alucinações,Esforço de Correcão Humana
+Claude,orders,22,22,22,100%,-,0,Nenhum
+Claude,payments,30,30,30,98%,L106,0,Nenhum
+Claude,customer_risk,30,30,30,100%,-,0,Nenhum
+Claude,TOTAL,82,82,82,99%,payments:L106,0,Nenhum
+Gemini,orders,41,41,41,100%,-,0,Nenhum
+Gemini,payments,36,36,36,98%,L106,0,Nenhum
+Gemini,customer_risk,53,53,53,100%,-,0,Nenhum
+Gemini,TOTAL,130,130,130,99%,payments:L106,0,Nenhum
+ChatGPT,orders,47,47,47,100%,-,0,Médio (10-15min) para correção de identação
+ChatGPT,payments,43,43,43,98%,L106,0,Nenhum
+ChatGPT,customer_risk,54,54,54,100%,-,0,nenhum
+ChatGPT,TOTAL,144,144,144,99%,payments:L106,0,Médio em orders.py (10-15min)

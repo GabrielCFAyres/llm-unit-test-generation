@@ -1,0 +1,10 @@
+Modelo,Módulo,Relevância dos Asserts,Justificativa
+Claude,orders,Alta,"Asserts verificam exatamente os retornos booleanos para cada regra de negócio (itens, endereço, estoque, pagamento) e exceções de tipo"
+Claude,payments,Alta,"Asserts verificam retornos booleanos e valores de taxa calculados com precisão numérica (ex: == 1.0, == 2.50, == 16.0)"
+Claude,customer_risk,Alta,"Asserts verificam classificações exatas (""low"", ""medium"", ""high"") e autorização booleana com valores de limite precisos para cada faixa"
+Gemini,orders,Alta,"Uso de @pytest.fixture, copy.deepcopy para isolamento de memória, is True/False e comentários # type: ignore[arg-type]. Garante que os testes não poluam os dados uns dos outros e demonstra conhecimento sobre integração de testes com linters de tipagem (mypy)."
+Gemini,payments,Alta,"Asserts idênticos ao Modelo 1 na eficácia (is True, is False, match=). Inclusão de # type: ignore."
+Gemini,customer_risk,Alta,A suíte valida a maioria dos comportamentos esperados com asserts específicos. Manteve a preocupação com os linters de tipagem durante a injeção de parâmetros de erro.
+ChatGPT,orders,Alta,"Asserts sólidos e idiomáticos, garantindo validação estrita dos retornos booleanos e das mensagens de erro. Uso correto de is True e is False. Uso de match= em pytest.raises."
+ChatGPT,payments,Alta,"Uso rigoroso de is True, is False e match= para pytest.raises. Asserts robustos. Seguiu corretamente as boas práticas de validação booleana e de captura de exceções específicas."
+ChatGPT,customer_risk,Alta,A suíte valida a maioria dos comportamentos esperados com asserts específicos.

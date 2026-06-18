@@ -1,0 +1,4 @@
+Modelo,Testes Gerados,Cobertura de Linhas,Cobertura de Branches,Relevância dos Asserts,Casos de Borda,Redundância,Alucinações,Esforço de Correcão Humana
+Claude,82,99%,99%,Alta,Sim,Baixa,0,Nenhum
+Gemini,120,99%,99%,Alta,Sim,Média em customer_risk e baixa nos restantes,0,Nenhum
+ChatGPT,144,99%,99%,Alta,Sim,Alta em customer_risk e baixa nos restantes,0,Médio em orders.py (10-15min)

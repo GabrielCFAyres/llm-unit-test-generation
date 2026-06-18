@@ -1,0 +1,4 @@
+Modelo,Testes Gerados,Testes Executaveis,Testes Aprovados,Cobertura de Linhas,Linhas Não Cobertas,Alucinações,Esforço de Correcão Humana
+Claude,82,82,82,99%,payments:L106,0,Nenhum
+Gemini,130,130,130,99%,payments:L106,0,Nenhum
+ChatGPT,144,144,144,99%,payments:L106,0,Médio em orders.py (10-15min)
